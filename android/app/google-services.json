@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "677690253478",
+    "project_id": "igor-flutter-themaxut",
+    "storage_bucket": "igor-flutter-themaxut.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:677690253478:android:0635afa828c1c8073c9467",
+        "android_client_info": {
+          "package_name": "com.example.igor"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "677690253478-dtkjl456uqrhha0g0o1lorime5ksi4jc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCCxkNOI2FDHYaEbXohVGGo-4fGClh9pjE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "677690253478-dtkjl456uqrhha0g0o1lorime5ksi4jc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
