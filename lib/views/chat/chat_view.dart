@@ -1,16 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:igor/views/chat/greeting_chat_view.dart';
-
-class ChatMessage {
-  String sender;
-  String text;
-
-  ChatMessage({
-    required this.sender,
-    required this.text,
-  });
-}
+import '../../models/chat_message.dart';
 
 class ChatView extends StatefulWidget {
   const ChatView({super.key});
@@ -26,13 +17,19 @@ class _ChatViewState extends State<ChatView> {
   void _handleSubmit(String text) {
     _textController.clear();
 
-    ChatMessage message = ChatMessage(sender: 'User', text: text);
+    ChatMessage message = ChatMessage(
+      text: text,
+      isFromUser: true,
+    );
     setState(() {
       _messages.insert(0, message);
     });
 
     //Mock response from Igor
-    ChatMessage response = ChatMessage(sender: 'Igor', text: 'Some response');
+    ChatMessage response = ChatMessage(
+      text: 'Some response',
+      isFromUser: false,
+    );
     setState(() {
       _messages.insert(0, response);
     });
@@ -56,11 +53,11 @@ class _ChatViewState extends State<ChatView> {
 
   Widget _buildMessageRow(ChatMessage message) {
     return Row(
-      crossAxisAlignment: message.sender == 'User'
+      crossAxisAlignment: message.isFromUser
           ? CrossAxisAlignment.end
           : CrossAxisAlignment.start,
       children: [
-        message.sender == 'User'
+        message.isFromUser
             ? const Expanded(child: SizedBox())
             : Image.asset(
                 'assets/images/igor-2.png',
@@ -71,7 +68,7 @@ class _ChatViewState extends State<ChatView> {
           margin: const EdgeInsets.all(10.0),
           padding: const EdgeInsets.all(10.0),
           decoration: BoxDecoration(
-            color: message.sender == 'User'
+            color: message.isFromUser
                 ? Colors.deepPurple[800]
                 : Colors.blueGrey[700],
             borderRadius: BorderRadius.circular(10),
@@ -83,7 +80,7 @@ class _ChatViewState extends State<ChatView> {
             ),
           ),
         ),
-        message.sender == 'User'
+        message.isFromUser
             ? Image.asset(
                 'assets/images/igor-main.png',
                 height: 40,
