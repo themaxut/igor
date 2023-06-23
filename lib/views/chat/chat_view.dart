@@ -2,19 +2,21 @@
 import 'package:flutter/material.dart';
 import 'package:igor/views/chat/greeting_chat_view.dart';
 import '../../models/chat_message.dart';
+import 'package:igor/services/openai_service.dart';
 
 class ChatView extends StatefulWidget {
   const ChatView({super.key});
 
   @override
-  _ChatViewState createState() => _ChatViewState();
+  ChatViewState createState() => ChatViewState();
 }
 
-class _ChatViewState extends State<ChatView> {
+class ChatViewState extends State<ChatView> {
   final List<ChatMessage> _messages = [];
   final TextEditingController _textController = TextEditingController();
+  final openaiService = OpenAIService();
 
-  void _handleSubmit(String text) {
+  void _handleSubmit(String text) async {
     _textController.clear();
 
     ChatMessage message = ChatMessage(
@@ -25,14 +27,30 @@ class _ChatViewState extends State<ChatView> {
       _messages.insert(0, message);
     });
 
-    //Mock response from Igor
-    ChatMessage response = ChatMessage(
-      text: 'Some response',
-      isFromUser: false,
-    );
-    setState(() {
-      _messages.insert(0, response);
-    });
+    // Response using the OpenAIService
+    try {
+      ChatMessage response = await openaiService.chat(message);
+
+      //Mock response from Igor
+      // ChatMessage response = ChatMessage(
+      //   text:
+      //       'Some extremely long response Some extremely long response Some extremely long response Some extremely long response Some extremely long response Some extremely long response',
+      //   isFromUser: false,
+      // );
+
+      setState(() {
+        _messages.insert(0, response);
+      });
+    } catch (e) {
+      ChatMessage errorResponse = ChatMessage(
+        text: e.toString(),
+        isFromUser: false,
+      );
+
+      setState(() {
+        _messages.insert(0, errorResponse);
+      });
+    }
   }
 
   // Decice what to show based on if there are any messages
@@ -53,9 +71,9 @@ class _ChatViewState extends State<ChatView> {
 
   Widget _buildMessageRow(ChatMessage message) {
     return Row(
-      crossAxisAlignment: message.isFromUser
-          ? CrossAxisAlignment.end
-          : CrossAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisAlignment:
+          message.isFromUser ? MainAxisAlignment.end : MainAxisAlignment.start,
       children: [
         message.isFromUser
             ? const Expanded(child: SizedBox())
@@ -65,6 +83,8 @@ class _ChatViewState extends State<ChatView> {
                 width: 40,
               ),
         Container(
+          constraints:
+              BoxConstraints(maxWidth: MediaQuery.of(context).size.width * 0.7),
           margin: const EdgeInsets.all(10.0),
           padding: const EdgeInsets.all(10.0),
           decoration: BoxDecoration(
@@ -73,11 +93,15 @@ class _ChatViewState extends State<ChatView> {
                 : Colors.blueGrey[700],
             borderRadius: BorderRadius.circular(10),
           ),
-          child: Text(
-            message.text,
-            style: const TextStyle(
-              fontSize: 16,
-            ),
+          child: Wrap(
+            children: [
+              Text(
+                message.text,
+                style: const TextStyle(
+                  fontSize: 16,
+                ),
+              ),
+            ],
           ),
         ),
         message.isFromUser
@@ -86,23 +110,9 @@ class _ChatViewState extends State<ChatView> {
                 height: 40,
                 width: 40,
               )
-            : const Expanded(
-                child: SizedBox(),
-              ),
+            : const Expanded(child: SizedBox()),
       ],
     );
-
-    // return ListTile(
-    //   leading: message.sender == 'Igor'
-    //       ? Image.asset(
-    //           'assets/images/igor-2.png',
-    //           height: 30,
-    //           width: 30,
-    //         )
-    //       : null,
-    //   title: Text(message.sender),
-    //   subtitle: Text(message.message),
-    // );
   }
 
   @override
@@ -139,6 +149,8 @@ class _ChatViewState extends State<ChatView> {
                     child: TextField(
                       controller: _textController,
                       onSubmitted: _handleSubmit,
+                      maxLines: 3,
+                      minLines: 1,
                       decoration: const InputDecoration(
                         border: OutlineInputBorder(
                           borderSide: BorderSide(
