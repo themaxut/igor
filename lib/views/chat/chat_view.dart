@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:igor/services/chat/bloc/chat_event.dart';
 import 'package:igor/views/chat/greeting_chat_view.dart';
+import '../../components/typing_indicator.dart';
 import '../../models/chat_message.dart';
 
 import '../../services/chat/bloc/chat_bloc.dart';
@@ -208,7 +209,7 @@ class ChatViewState extends State<ChatView>
               color: Colors.blueGrey[700],
               borderRadius: BorderRadius.circular(10),
             ),
-            child: _buildTypingIndicator(),
+            child: const TypingIndicator(),
           ),
         ],
       );
@@ -258,22 +259,5 @@ class ChatViewState extends State<ChatView>
         ],
       );
     }
-  }
-
-  Widget _buildTypingIndicator() {
-    return Container(
-      padding: const EdgeInsets.all(8.0),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: <Widget>[
-          const Text('Igor is typing'),
-          AnimatedIcon(
-            icon: AnimatedIcons.arrow_menu,
-            progress: _animationController,
-            size: 30.0,
-          ),
-        ],
-      ),
-    );
   }
 }
