@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:igor/services/chat/bloc/chat_bloc.dart';
 import 'package:igor/services/chat/openai_service.dart';
+import 'package:igor/views/auth/login_view.dart';
 import 'package:igor/views/chat/chat_view.dart';
 import 'package:dart_openai/dart_openai.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -22,9 +23,9 @@ class IgorApp extends StatelessWidget {
       title: 'Igor',
       theme: ThemeData.dark(),
       home: BlocProvider<ChatBloc>(
-        create: (context) => ChatBloc(apiService: OpenAIService()),
-        child: const ChatView(),
-      ),
+          create: (context) => ChatBloc(apiService: OpenAIService()),
+          child: LoginView() //const ChatView(),
+          ),
     );
   }
 }
