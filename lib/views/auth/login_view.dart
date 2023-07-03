@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 class LoginView extends StatelessWidget {
+  final _formKey = GlobalKey<FormState>();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
 
@@ -17,7 +18,7 @@ class LoginView extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
               Image.asset(
-                'assets/images/igor-2.png',
+                'assets/images/igor-main.png',
                 height: 150,
               ),
               const SizedBox(height: 30.0),
@@ -38,58 +39,78 @@ class LoginView extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 45.0),
-              TextField(
-                controller: emailController,
-                cursorColor: Colors.purpleAccent,
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(30),
-                    borderSide: const BorderSide(
-                        color: Colors.purpleAccent, width: 1.0),
-                  ),
-                  enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(30),
-                    borderSide: const BorderSide(
-                        color: Colors.purpleAccent, width: 1.0),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(30),
-                    borderSide: const BorderSide(
-                        color: Colors.purpleAccent, width: 2.0),
-                  ),
-                  labelText: 'Email Address',
-                  labelStyle: const TextStyle(
-                    color: Colors.purpleAccent,
+              SingleChildScrollView(
+                child: Form(
+                  key: _formKey,
+                  child: Column(
+                    children: [
+                      TextFormField(
+                        controller: emailController,
+                        cursorColor: Colors.purpleAccent,
+                        decoration: InputDecoration(
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(30),
+                            borderSide: const BorderSide(
+                                color: Colors.purpleAccent, width: 1.0),
+                          ),
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(30),
+                            borderSide: const BorderSide(
+                                color: Colors.purpleAccent, width: 1.0),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(30),
+                            borderSide: const BorderSide(
+                                color: Colors.purpleAccent, width: 2.0),
+                          ),
+                          labelText: 'Email Address',
+                          labelStyle: const TextStyle(
+                            color: Colors.purple,
+                          ),
+                        ),
+                        keyboardType: TextInputType.emailAddress,
+                        textCapitalization: TextCapitalization.none,
+                        validator: (value) {
+                          if (value!.isEmpty) return 'Email cannot be empty';
+                          return null;
+                        },
+                      ),
+                      const SizedBox(height: 30),
+                      TextFormField(
+                        autocorrect: false,
+                        controller: passwordController,
+                        cursorColor: Colors.purpleAccent,
+                        decoration: InputDecoration(
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(30),
+                            borderSide: const BorderSide(
+                                color: Colors.purpleAccent, width: 1.0),
+                          ),
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(30),
+                            borderSide: const BorderSide(
+                                color: Colors.purpleAccent, width: 1.0),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(30),
+                            borderSide: const BorderSide(
+                                color: Colors.purpleAccent, width: 2.0),
+                          ),
+                          labelText: 'Password',
+                          labelStyle: const TextStyle(
+                            color: Colors.purple,
+                          ),
+                        ),
+                        enableSuggestions: false,
+                        obscureText: true,
+                        validator: (value) {
+                          if (value!.isEmpty) return 'Password cannot be empty';
+                          return null;
+                        },
+                      ),
+                    ],
                   ),
                 ),
-                keyboardType: TextInputType.emailAddress,
-              ),
-              const SizedBox(height: 30.0),
-              TextField(
-                controller: passwordController,
-                cursorColor: Colors.purpleAccent,
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(30),
-                    borderSide: const BorderSide(
-                        color: Colors.purpleAccent, width: 1.0),
-                  ),
-                  enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(30),
-                    borderSide: const BorderSide(
-                        color: Colors.purpleAccent, width: 1.0),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(30),
-                    borderSide: const BorderSide(
-                        color: Colors.purpleAccent, width: 2.0),
-                  ),
-                  labelText: 'Password',
-                  labelStyle: const TextStyle(
-                    color: Colors.purpleAccent,
-                  ),
-                ),
-                obscureText: true,
               ),
               const SizedBox(height: 30.0),
               Row(
@@ -109,12 +130,12 @@ class LoginView extends StatelessWidget {
                   ElevatedButton(
                     onPressed: () {
                       // TODO: implement login auth
+                      _formKey.currentState!.validate();
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.purpleAccent[700],
                       shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(
-                            30.0), // specify the radius for your button here
+                        borderRadius: BorderRadius.circular(30.0),
                       ),
                       minimumSize: const Size(150, 50),
                     ),
