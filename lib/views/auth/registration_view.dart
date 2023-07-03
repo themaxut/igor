@@ -19,6 +19,16 @@ class RegistrationView extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
+              Row(
+                children: [
+                  IconButton(
+                    icon: const Icon(Icons.arrow_back),
+                    onPressed: () {
+                      // TODO: go back to login page
+                    },
+                  ),
+                ],
+              ),
               Image.asset(
                 'assets/images/igor-2.png',
                 height: 150,
