@@ -20,7 +20,6 @@ class ChatViewState extends State<ChatView>
     with SingleTickerProviderStateMixin {
   final List<ChatMessage> _messages = [];
   final TextEditingController _textController = TextEditingController();
-  late AnimationController _animationController;
   late final ValueNotifier<List<ChatMessage>> _messagesNotifier;
   // final openaiService = OpenAIService();
 
@@ -29,17 +28,6 @@ class ChatViewState extends State<ChatView>
     super.initState();
 
     _messagesNotifier = ValueNotifier<List<ChatMessage>>(_messages);
-
-    _animationController = AnimationController(
-      vsync: this,
-      duration: const Duration(milliseconds: 500),
-    )..repeat(reverse: true);
-  }
-
-  @override
-  void dispose() {
-    _animationController.dispose();
-    super.dispose();
   }
 
   void _handleSubmit(String text) async {
