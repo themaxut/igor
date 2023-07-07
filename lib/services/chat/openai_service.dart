@@ -19,8 +19,8 @@ class OpenAIService {
         );
 
         // TODO: remove this after
-        print(chatCompletion.id);
-        print(chatCompletion.choices.first.message);
+        // print(chatCompletion.id);
+        // print(chatCompletion.choices.first.message);
 
         if (chatCompletion.choices.isNotEmpty) {
           ChatMessage response = ChatMessage(

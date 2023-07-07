@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart' show immutable;
 
 import '../../../models/chat_message.dart';
+import '../../firestore/firestore_chat_message.dart';
 
 @immutable
 abstract class ChatState {}
@@ -29,4 +30,10 @@ class ChatError extends ChatState {
   ChatError({
     required this.error,
   });
+}
+
+class ChatHistoryLoaded extends ChatState {
+  final List<FirestoreChatMessage> chatHistory;
+
+  ChatHistoryLoaded({required this.chatHistory});
 }

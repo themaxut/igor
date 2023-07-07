@@ -244,12 +244,17 @@ class _RegistrationViewState extends State<RegistrationView> {
 
                                 final email = _emailController.text;
                                 final password = _passwordController.text;
-                                context.read<AuthBloc>().add(
-                                      AuthEventRegister(
-                                        email,
-                                        password,
-                                      ),
-                                    );
+                                final verifyPassword =
+                                    _verifyPasswordController.text;
+
+                                if (password == verifyPassword) {
+                                  context.read<AuthBloc>().add(
+                                        AuthEventRegister(
+                                          email,
+                                          password,
+                                        ),
+                                      );
+                                }
                               },
                               style: ElevatedButton.styleFrom(
                                 backgroundColor:

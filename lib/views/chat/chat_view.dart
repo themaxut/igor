@@ -1,7 +1,7 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:igor/services/chat/bloc/chat_event.dart';
+import 'package:igor/utilities/dialogs/clear_history_dialog.dart';
 import 'package:igor/views/chat/greeting_chat_view.dart';
 import '../../components/typing_indicator.dart';
 import '../../models/chat_message.dart';
@@ -29,7 +29,7 @@ class ChatViewState extends State<ChatView>
   @override
   void initState() {
     super.initState();
-
+    context.read<ChatBloc>().add(LoadChatHistoryEvent());
     _messagesNotifier = ValueNotifier<List<ChatMessage>>(_messages);
   }
 
@@ -85,6 +85,14 @@ class ChatViewState extends State<ChatView>
         if (state is ChatResponseLoaded) {
           _messagesNotifier.value.removeAt(0);
           _messagesNotifier.value.insert(0, state.message);
+        } else if (state is ChatHistoryLoaded) {
+          _messagesNotifier.value = state.chatHistory
+              .map(
+                (firestoreMessage) => ChatMessage(
+                    text: firestoreMessage.message,
+                    isFromUser: firestoreMessage.isFromUser),
+              )
+              .toList();
         }
       },
       builder: (context, state) {
@@ -99,6 +107,23 @@ class ChatViewState extends State<ChatView>
               ),
               backgroundColor: const Color.fromARGB(255, 254, 238, 59),
               actions: <Widget>[
+                IconButton(
+                  icon: const Icon(
+                    Icons.restart_alt_rounded,
+                    color: Colors.black,
+                  ),
+                  onPressed: () async {
+                    // TODO: fix this - messages are not deleted
+                    final shouldClearHistory =
+                        await showClearHistoryDialog(context);
+                    if (shouldClearHistory) {
+                      _messages.clear();
+                      context.read<ChatBloc>().add(
+                            ClearChatHistoryEvent(),
+                          );
+                    }
+                  },
+                ),
                 IconButton(
                   icon: const Icon(Icons.logout, color: Colors.black),
                   onPressed: () async {

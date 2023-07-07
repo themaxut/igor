@@ -13,3 +13,5 @@ class SendMessageEvent extends ChatEvent {
     required this.message,
   });
 }
+
+class LoadChatHistoryEvent extends ChatEvent {}
