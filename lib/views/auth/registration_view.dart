@@ -58,27 +58,32 @@ class RegistrationView extends StatelessWidget {
                     children: [
                       TextFormField(
                         controller: emailController,
-                        cursorColor: Colors.purpleAccent,
+                        cursorColor: const Color.fromARGB(255, 254, 238, 59),
                         decoration: InputDecoration(
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(30),
                             borderSide: const BorderSide(
-                                color: Colors.purpleAccent, width: 1.0),
+                                color: Color.fromARGB(255, 254, 238, 59),
+                                width: 1.0),
                           ),
                           enabledBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(30),
                             borderSide: const BorderSide(
-                                color: Colors.purpleAccent, width: 1.0),
+                                color: Color.fromARGB(255, 254, 238, 59),
+                                width: 1.0),
                           ),
                           focusedBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(30),
                             borderSide: const BorderSide(
-                                color: Colors.purpleAccent, width: 2.0),
+                                color: Color.fromARGB(255, 254, 238, 59),
+                                width: 2.0),
                           ),
                           labelText: 'Email Address',
+                          floatingLabelBehavior: FloatingLabelBehavior.always,
                           labelStyle: const TextStyle(
-                            color: Colors.purple,
-                          ),
+                              color: Color.fromARGB(255, 254, 238, 59),
+                              fontSize: 16,
+                              letterSpacing: 2),
                         ),
                         keyboardType: TextInputType.emailAddress,
                         textCapitalization: TextCapitalization.none,
@@ -91,27 +96,32 @@ class RegistrationView extends StatelessWidget {
                       TextFormField(
                         autocorrect: false,
                         controller: passwordController,
-                        cursorColor: Colors.purpleAccent,
+                        cursorColor: const Color.fromARGB(255, 254, 238, 59),
                         decoration: InputDecoration(
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(30),
                             borderSide: const BorderSide(
-                                color: Colors.purpleAccent, width: 1.0),
+                                color: Color.fromARGB(255, 254, 238, 59),
+                                width: 1.0),
                           ),
                           enabledBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(30),
                             borderSide: const BorderSide(
-                                color: Colors.purpleAccent, width: 1.0),
+                                color: Color.fromARGB(255, 254, 238, 59),
+                                width: 1.0),
                           ),
                           focusedBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(30),
                             borderSide: const BorderSide(
-                                color: Colors.purpleAccent, width: 2.0),
+                                color: Color.fromARGB(255, 254, 238, 59),
+                                width: 2.0),
                           ),
                           labelText: 'Password',
+                          floatingLabelBehavior: FloatingLabelBehavior.always,
                           labelStyle: const TextStyle(
-                            color: Colors.purple,
-                          ),
+                              color: Color.fromARGB(255, 254, 238, 59),
+                              fontSize: 16,
+                              letterSpacing: 2),
                         ),
                         enableSuggestions: false,
                         obscureText: true,
@@ -124,27 +134,32 @@ class RegistrationView extends StatelessWidget {
                       TextFormField(
                         autocorrect: false,
                         controller: verifyPasswordController,
-                        cursorColor: Colors.purpleAccent,
+                        cursorColor: const Color.fromARGB(255, 254, 238, 59),
                         decoration: InputDecoration(
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(30),
                             borderSide: const BorderSide(
-                                color: Colors.purpleAccent, width: 1.0),
+                                color: Color.fromARGB(255, 254, 238, 59),
+                                width: 1.0),
                           ),
                           enabledBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(30),
                             borderSide: const BorderSide(
-                                color: Colors.purpleAccent, width: 1.0),
+                                color: Color.fromARGB(255, 254, 238, 59),
+                                width: 1.0),
                           ),
                           focusedBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(30),
                             borderSide: const BorderSide(
-                                color: Colors.purpleAccent, width: 2.0),
+                                color: Color.fromARGB(255, 254, 238, 59),
+                                width: 2.0),
                           ),
                           labelText: 'Confirm Password',
+                          floatingLabelBehavior: FloatingLabelBehavior.always,
                           labelStyle: const TextStyle(
-                            color: Colors.purple,
-                          ),
+                              color: Color.fromARGB(255, 254, 238, 59),
+                              fontSize: 16,
+                              letterSpacing: 2),
                         ),
                         enableSuggestions: false,
                         obscureText: true,
@@ -163,7 +178,8 @@ class RegistrationView extends StatelessWidget {
                           _formKey.currentState!.validate();
                         },
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.purpleAccent[700],
+                          backgroundColor:
+                              const Color.fromARGB(255, 254, 238, 59),
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(30.0),
                           ),
@@ -173,6 +189,7 @@ class RegistrationView extends StatelessWidget {
                           'Register',
                           style: TextStyle(
                             fontSize: 16,
+                            color: Colors.black,
                           ),
                         ),
                       ),
@@ -180,64 +197,6 @@ class RegistrationView extends StatelessWidget {
                   ),
                 ),
               ),
-              // TextField(
-              //   controller: passwordController,
-              //   autocorrect: false,
-              //   enableSuggestions: false,
-              //   cursorColor: Colors.purpleAccent,
-              //   decoration: InputDecoration(
-              //     border: OutlineInputBorder(
-              //       borderRadius: BorderRadius.circular(30),
-              //       borderSide: const BorderSide(
-              //           color: Colors.purpleAccent, width: 1.0),
-              //     ),
-              //     enabledBorder: OutlineInputBorder(
-              //       borderRadius: BorderRadius.circular(30),
-              //       borderSide: const BorderSide(
-              //           color: Colors.purpleAccent, width: 1.0),
-              //     ),
-              //     focusedBorder: OutlineInputBorder(
-              //       borderRadius: BorderRadius.circular(30),
-              //       borderSide: const BorderSide(
-              //           color: Colors.purpleAccent, width: 2.0),
-              //     ),
-              //     labelText: 'Password',
-              //     labelStyle: const TextStyle(
-              //       color: Colors.purple,
-              //     ),
-              //   ),
-              //   obscureText: true,
-              // ),
-              // const SizedBox(height: 30.0),
-              // TextField(
-              //   controller: verifyPasswordController,
-              //   autocorrect: false,
-              //   enableSuggestions: false,
-              //   cursorColor: Colors.purpleAccent,
-              //   decoration: InputDecoration(
-              //     border: OutlineInputBorder(
-              //       borderRadius: BorderRadius.circular(30),
-              //       borderSide: const BorderSide(
-              //           color: Colors.purpleAccent, width: 1.0),
-              //     ),
-              //     enabledBorder: OutlineInputBorder(
-              //       borderRadius: BorderRadius.circular(30),
-              //       borderSide: const BorderSide(
-              //           color: Colors.purpleAccent, width: 1.0),
-              //     ),
-              //     focusedBorder: OutlineInputBorder(
-              //       borderRadius: BorderRadius.circular(30),
-              //       borderSide: const BorderSide(
-              //           color: Colors.purpleAccent, width: 2.0),
-              //     ),
-              //     labelText: 'Confirm Password',
-              //     labelStyle: const TextStyle(
-              //       color: Colors.purple,
-              //     ),
-              //   ),
-              //   obscureText: true,
-              // ),
-
               Divider(
                 color: Colors.grey[300],
                 height: 60,
@@ -253,10 +212,10 @@ class RegistrationView extends StatelessWidget {
                     onPressed: () {
                       // TODO: navigate to login screen
                     },
-                    child: Text(
+                    child: const Text(
                       'Summon my Igor',
                       style: TextStyle(
-                        color: Colors.purpleAccent[400],
+                        color: Color.fromARGB(255, 254, 238, 59),
                       ),
                     ),
                   ),

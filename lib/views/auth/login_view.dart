@@ -46,27 +46,32 @@ class LoginView extends StatelessWidget {
                     children: [
                       TextFormField(
                         controller: emailController,
-                        cursorColor: Colors.purpleAccent,
+                        cursorColor: const Color.fromARGB(255, 254, 238, 59),
                         decoration: InputDecoration(
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(30),
                             borderSide: const BorderSide(
-                                color: Colors.purpleAccent, width: 1.0),
+                                color: Color.fromARGB(255, 254, 238, 59),
+                                width: 1.0),
                           ),
                           enabledBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(30),
                             borderSide: const BorderSide(
-                                color: Colors.purpleAccent, width: 1.0),
+                                color: Color.fromARGB(255, 254, 238, 59),
+                                width: 1.0),
                           ),
                           focusedBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(30),
                             borderSide: const BorderSide(
-                                color: Colors.purpleAccent, width: 2.0),
+                                color: Color.fromARGB(255, 254, 238, 59),
+                                width: 2.0),
                           ),
                           labelText: 'Email Address',
+                          floatingLabelBehavior: FloatingLabelBehavior.always,
                           labelStyle: const TextStyle(
-                            color: Colors.purple,
-                          ),
+                              color: Color.fromARGB(255, 254, 238, 59),
+                              fontSize: 16,
+                              letterSpacing: 2),
                         ),
                         keyboardType: TextInputType.emailAddress,
                         textCapitalization: TextCapitalization.none,
@@ -79,26 +84,32 @@ class LoginView extends StatelessWidget {
                       TextFormField(
                         autocorrect: false,
                         controller: passwordController,
-                        cursorColor: Colors.purpleAccent,
+                        cursorColor: const Color.fromARGB(255, 254, 238, 59),
                         decoration: InputDecoration(
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(30),
                             borderSide: const BorderSide(
-                                color: Colors.purpleAccent, width: 1.0),
+                                color: Color.fromARGB(255, 254, 238, 59),
+                                width: 1.0),
                           ),
                           enabledBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(30),
                             borderSide: const BorderSide(
-                                color: Colors.purpleAccent, width: 1.0),
+                                color: Color.fromARGB(255, 254, 238, 59),
+                                width: 1.0),
                           ),
                           focusedBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(30),
                             borderSide: const BorderSide(
-                                color: Colors.purpleAccent, width: 2.0),
+                                color: Color.fromARGB(255, 254, 238, 59),
+                                width: 2.0),
                           ),
                           labelText: 'Password',
+                          floatingLabelBehavior: FloatingLabelBehavior.always,
                           labelStyle: const TextStyle(
-                            color: Colors.purple,
+                            color: Color.fromARGB(255, 254, 238, 59),
+                            fontSize: 16,
+                            letterSpacing: 2,
                           ),
                         ),
                         enableSuggestions: false,
@@ -119,10 +130,10 @@ class LoginView extends StatelessWidget {
                     onPressed: () {
                       // TODO: navigate to forgot password screen
                     },
-                    child: Text(
+                    child: const Text(
                       'Forgot your password?',
                       style: TextStyle(
-                        color: Colors.purpleAccent[400],
+                        color: Color.fromARGB(255, 254, 238, 59),
                       ),
                     ),
                   ),
@@ -133,7 +144,7 @@ class LoginView extends StatelessWidget {
                       _formKey.currentState!.validate();
                     },
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.purpleAccent[700],
+                      backgroundColor: const Color.fromARGB(255, 254, 238, 59),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(30.0),
                       ),
@@ -143,6 +154,7 @@ class LoginView extends StatelessWidget {
                       'Login',
                       style: TextStyle(
                         fontSize: 16,
+                        color: Colors.black,
                       ),
                     ),
                   ),
@@ -163,10 +175,10 @@ class LoginView extends StatelessWidget {
                     onPressed: () {
                       // TODO: navigate to registration screen
                     },
-                    child: Text(
+                    child: const Text(
                       'Acquire an Igor',
                       style: TextStyle(
-                        color: Colors.purpleAccent[400],
+                        color: Color.fromARGB(255, 254, 238, 59),
                       ),
                     ),
                   ),

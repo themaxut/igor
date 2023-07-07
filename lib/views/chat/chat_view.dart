@@ -90,8 +90,11 @@ class ChatViewState extends State<ChatView>
           theme: ThemeData.dark(),
           home: Scaffold(
             appBar: AppBar(
-              title: const Text('It is your Igor, master!'),
-              backgroundColor: Colors.deepPurple,
+              title: const Text(
+                'It is your Igor, master!',
+                style: TextStyle(color: Colors.black),
+              ),
+              backgroundColor: Color.fromARGB(255, 254, 238, 59),
               //TODO: add Logout button
             ),
             body: Column(
@@ -123,15 +126,18 @@ class ChatViewState extends State<ChatView>
                           decoration: const InputDecoration(
                             border: OutlineInputBorder(
                               borderSide: BorderSide(
-                                  color: Colors.deepPurpleAccent, width: 1.0),
+                                  color: Color.fromARGB(255, 254, 238, 59),
+                                  width: 1.0),
                             ),
                             enabledBorder: OutlineInputBorder(
                               borderSide: BorderSide(
-                                  color: Colors.deepPurpleAccent, width: 1.0),
+                                  color: Color.fromARGB(255, 254, 238, 59),
+                                  width: 1.0),
                             ),
                             focusedBorder: OutlineInputBorder(
                               borderSide: BorderSide(
-                                  color: Colors.deepPurpleAccent, width: 2.0),
+                                  color: Color.fromARGB(255, 254, 238, 59),
+                                  width: 2.0),
                             ),
                             hintText: 'Enter your wishes here master',
                           ),
@@ -142,7 +148,7 @@ class ChatViewState extends State<ChatView>
                           _handleSubmit(_textController.text);
                         },
                         icon: const Icon(Icons.send),
-                        color: Colors.deepPurpleAccent,
+                        color: Color.fromARGB(255, 254, 238, 59),
                       ),
                     ],
                   ),
@@ -222,8 +228,8 @@ class ChatViewState extends State<ChatView>
             padding: const EdgeInsets.all(10.0),
             decoration: BoxDecoration(
               color: message.isFromUser
-                  ? Colors.deepPurple[800]
-                  : Colors.blueGrey[700],
+                  ? const Color.fromARGB(255, 254, 238, 59)
+                  : const Color.fromARGB(255, 194, 195, 195),
               borderRadius: BorderRadius.circular(10),
             ),
             child: Wrap(
@@ -232,6 +238,7 @@ class ChatViewState extends State<ChatView>
                   message.text,
                   style: const TextStyle(
                     fontSize: 16,
+                    color: Colors.black,
                   ),
                 ),
               ],
