@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../services/auth/auth_exceptions.dart';
 import '../../services/auth/bloc/auth_bloc.dart';
 import '../../services/auth/bloc/auth_event.dart';
 import '../../services/auth/bloc/auth_state.dart';
+import '../../utilities/dialogs/error_dialog.dart';
 
 class LoginView extends StatefulWidget {
   const LoginView({super.key});
@@ -35,15 +37,23 @@ class _LoginViewState extends State<LoginView> {
   Widget build(BuildContext context) {
     return BlocListener<AuthBloc, AuthState>(
       listener: (context, state) async {
-        context;
-        // if (state is AuthStateLoggedOut) {
-        //   if (state.exception is UserNotFoundAuthException ||
-        //       state.exception is WrongPasswordAuthException) {
-        //     //TODO: show error dialog for wrong password
-        //   } else if (state.exception is GenericAuthException) {
-        //     // TODO: show error dialog for login error
-        //   }
-        // }
+        if (state is AuthStateLoggedOut) {
+          if (state.exception is UserNotFoundAuthException ||
+              state.exception is WrongPasswordAuthException) {
+            await showErrorDialog(
+              context,
+              'Wrong Credentials',
+            );
+          } else if (state.exception is GenericAuthException) {
+            ScaffoldMessenger.of(context)
+              ..hideCurrentSnackBar()
+              ..showSnackBar(
+                const SnackBar(
+                  content: Text('Something went wrong'),
+                ),
+              );
+          }
+        }
       },
       child: Scaffold(
         body: Center(

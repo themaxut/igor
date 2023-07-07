@@ -10,6 +10,7 @@ import '../../services/auth/bloc/auth_bloc.dart';
 import '../../services/auth/bloc/auth_event.dart';
 import '../../services/chat/bloc/chat_bloc.dart';
 import '../../services/chat/bloc/chat_state.dart';
+import '../../utilities/dialogs/logout_dialog.dart';
 
 class ChatView extends StatefulWidget {
   const ChatView({super.key});
@@ -100,11 +101,13 @@ class ChatViewState extends State<ChatView>
               actions: <Widget>[
                 IconButton(
                   icon: const Icon(Icons.logout, color: Colors.black),
-                  onPressed: () {
-                    //TODO: replace with confirmation dialog
-                    context.read<AuthBloc>().add(
-                          const AuthEventLogout(),
-                        );
+                  onPressed: () async {
+                    final shouldLogout = await showLogoutDialog(context);
+                    if (shouldLogout) {
+                      context.read<AuthBloc>().add(
+                            const AuthEventLogout(),
+                          );
+                    }
                   },
                 ),
               ],

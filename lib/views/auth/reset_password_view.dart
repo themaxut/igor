@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../services/auth/auth_exceptions.dart';
 import '../../services/auth/bloc/auth_bloc.dart';
 import '../../services/auth/bloc/auth_event.dart';
 import '../../services/auth/bloc/auth_state.dart';
+import '../../utilities/dialogs/error_dialog.dart';
+import '../../utilities/dialogs/password_reset_send_dialog.dart';
 
 class ResetPasswordView extends StatefulWidget {
   const ResetPasswordView({super.key});
@@ -20,7 +23,6 @@ class _ResetPasswordViewState extends State<ResetPasswordView> {
   @override
   void initState() {
     _emailController = TextEditingController();
-    _passwordController = TextEditingController();
     super.initState();
   }
 
@@ -35,29 +37,30 @@ class _ResetPasswordViewState extends State<ResetPasswordView> {
   Widget build(BuildContext context) {
     return BlocListener<AuthBloc, AuthState>(
       listener: (context, state) async {
-        // TODO: implement listener
-        // if (state is AuthStateForgotPassword) {
-        //   if (state.hasSentEmail) {
-        //     _controller.clear();
-        //     await showPasswordResetSendDialog(context);
-        //   }
-        //   if (state.exception is InvalidEmailAuthException) {
-        //     await showErrorDialog(
-        //       context,
-        //       'The email you provided is invalid',
-        //     );
-        //   } else if (state.exception is UserNotFoundAuthException) {
-        //     await showErrorDialog(
-        //       context,
-        //       'Please make sure you are a registered user',
-        //     );
-        //   } else {
-        //     await showErrorDialog(
-        //       context,
-        //       context.loc.forgot_password_view_generic_error,
-        //     );
-        //   }
-        // }
+        if (state is AuthStateForgotPassword) {
+          if (state.hasSentEmail) {
+            _emailController.clear();
+            await showPasswordResetSendDialog(
+              context,
+            );
+          }
+          if (state.exception is InvalidEmailAuthException) {
+            await showErrorDialog(
+              context,
+              'The email you provided is invalid',
+            );
+          } else if (state.exception is UserNotFoundAuthException) {
+            await showErrorDialog(
+              context,
+              'Please make sure you are a registered user',
+            );
+          } else {
+            await showErrorDialog(
+              context,
+              'We could not process your request. Please make sure that you are a registered user, or if not, register a user now by going back one step.',
+            );
+          }
+        }
       },
       child: Scaffold(
         body: Stack(
@@ -66,7 +69,6 @@ class _ResetPasswordViewState extends State<ResetPasswordView> {
               child: IconButton(
                 icon: const Icon(Icons.arrow_back),
                 onPressed: () {
-                  // TODO: go back to login page
                   context.read<AuthBloc>().add(
                         const AuthEventLogout(),
                       );
@@ -155,7 +157,6 @@ class _ResetPasswordViewState extends State<ResetPasswordView> {
                     const SizedBox(height: 30.0),
                     ElevatedButton(
                       onPressed: () {
-                        // TODO: implement forgot password
                         _formKey.currentState!.validate();
                         final email = _emailController.text;
                         context.read<AuthBloc>().add(
@@ -191,7 +192,6 @@ class _ResetPasswordViewState extends State<ResetPasswordView> {
                         ),
                         TextButton(
                           onPressed: () {
-                            // TODO: navigate to login screen
                             context.read<AuthBloc>().add(
                                   const AuthEventLogout(),
                                 );

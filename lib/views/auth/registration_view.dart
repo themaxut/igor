@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../services/auth/auth_exceptions.dart';
 import '../../services/auth/bloc/auth_bloc.dart';
 import '../../services/auth/bloc/auth_event.dart';
 import '../../services/auth/bloc/auth_state.dart';
+import '../../utilities/dialogs/error_dialog.dart';
 
 class RegistrationView extends StatefulWidget {
   const RegistrationView({super.key});
@@ -37,29 +39,29 @@ class _RegistrationViewState extends State<RegistrationView> {
   Widget build(BuildContext context) {
     return BlocListener<AuthBloc, AuthState>(
       listener: (context, state) async {
-        //  if (state is AuthStateRegistering) {
-        //     if (state.exception is WeakPasswordAuthException) {
-        //       await showErrorDialog(
-        //         context,
-        //         context.register_error_weak_password,
-        //       );
-        //     } else if (state.exception is EmailAlreadyInUseException) {
-        //       await showErrorDialog(
-        //         context,
-        //         context.register_error_email_already_in_use,
-        //       );
-        //     } else if (state.exception is InvalidEmailAuthException) {
-        //       await showErrorDialog(
-        //         context,
-        //         context.register_error_invalid_email,
-        //       );
-        //     } else if (state.exception is GenericAuthException) {
-        //       await showErrorDialog(
-        //         context,
-        //         context.register_error_generic,
-        //       );
-        //     }
-        //   }
+        if (state is AuthStateRegistering) {
+          if (state.exception is WeakPasswordAuthException) {
+            await showErrorDialog(
+              context,
+              'Weak Password',
+            );
+          } else if (state.exception is EmailAlreadyInUseException) {
+            await showErrorDialog(
+              context,
+              'Email already in use',
+            );
+          } else if (state.exception is InvalidEmailAuthException) {
+            await showErrorDialog(
+              context,
+              'Invalid Email',
+            );
+          } else if (state.exception is GenericAuthException) {
+            await showErrorDialog(
+              context,
+              'Failed to register. Please try again later.',
+            );
+          }
+        }
       },
       child: Scaffold(
         body: Stack(
@@ -68,7 +70,6 @@ class _RegistrationViewState extends State<RegistrationView> {
               child: IconButton(
                 icon: const Icon(Icons.arrow_back),
                 onPressed: () {
-                  // TODO: go back to login page
                   context.read<AuthBloc>().add(
                         const AuthEventLogout(),
                       );
@@ -239,7 +240,6 @@ class _RegistrationViewState extends State<RegistrationView> {
                             const SizedBox(height: 30.0),
                             ElevatedButton(
                               onPressed: () async {
-                                // TODO: implement register logic
                                 _formKey.currentState!.validate();
 
                                 final email = _emailController.text;
@@ -284,7 +284,6 @@ class _RegistrationViewState extends State<RegistrationView> {
                         ),
                         TextButton(
                           onPressed: () {
-                            // TODO: navigate to login screen
                             context.read<AuthBloc>().add(
                                   const AuthEventLogout(),
                                 );

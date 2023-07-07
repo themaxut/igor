@@ -16,9 +16,7 @@ class _VerifyEmailViewState extends State<VerifyEmailView> {
   @override
   Widget build(BuildContext context) {
     return BlocListener<AuthBloc, AuthState>(
-      listener: (context, state) {
-        // TODO: implement listener
-      },
+      listener: (context, state) {},
       child: Scaffold(
         body: Stack(
           children: [
@@ -26,7 +24,6 @@ class _VerifyEmailViewState extends State<VerifyEmailView> {
               child: IconButton(
                 icon: const Icon(Icons.arrow_back),
                 onPressed: () async {
-                  // TODO: go back to login page
                   context.read<AuthBloc>().add(
                         const AuthEventLogout(),
                       );
@@ -84,7 +81,6 @@ class _VerifyEmailViewState extends State<VerifyEmailView> {
                     const SizedBox(height: 30.0),
                     ElevatedButton(
                       onPressed: () async {
-                        // TODO: go to login screen
                         context.read<AuthBloc>().add(
                               const AuthEventLogout(),
                             );
@@ -120,7 +116,6 @@ class _VerifyEmailViewState extends State<VerifyEmailView> {
                     const SizedBox(width: 30),
                     TextButton(
                       onPressed: () {
-                        // TODO: resend email verification
                         context.read<AuthBloc>().add(
                               const AuthEventSendEmailVerification(),
                             );
