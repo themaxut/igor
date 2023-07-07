@@ -4,6 +4,7 @@ import 'package:igor/services/chat/bloc/chat_event.dart';
 import 'package:igor/utilities/dialogs/clear_history_dialog.dart';
 import 'package:igor/views/chat/greeting_chat_view.dart';
 import '../../components/typing_indicator.dart';
+import '../../helpers/loading/loading_screen.dart';
 import '../../models/chat_message.dart';
 
 import '../../services/auth/bloc/auth_bloc.dart';
@@ -85,7 +86,13 @@ class ChatViewState extends State<ChatView>
         if (state is ChatResponseLoaded) {
           _messagesNotifier.value.removeAt(0);
           _messagesNotifier.value.insert(0, state.message);
+        } else if (state is ChatHistoryDeleting) {
+          LoadingScreen().show(
+            context: context,
+            text: 'Clearing chat',
+          );
         } else if (state is ChatHistoryLoaded) {
+          LoadingScreen().hide();
           _messagesNotifier.value = state.chatHistory
               .map(
                 (firestoreMessage) => ChatMessage(
@@ -115,8 +122,6 @@ class ChatViewState extends State<ChatView>
                   onPressed: () async {
                     final shouldClearHistory =
                         await showClearHistoryDialog(context);
-                    print(
-                        'Clear history dialog result: $shouldClearHistory'); // Debug print
                     if (shouldClearHistory) {
                       _messages.clear();
                       context.read<ChatBloc>().add(

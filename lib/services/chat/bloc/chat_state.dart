@@ -37,3 +37,5 @@ class ChatHistoryLoaded extends ChatState {
 
   ChatHistoryLoaded({required this.chatHistory});
 }
+
+class ChatHistoryDeleting extends ChatState {}
