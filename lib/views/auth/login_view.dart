@@ -69,7 +69,7 @@ class _LoginViewState extends State<LoginView> {
                 ),
                 const SizedBox(height: 30.0),
                 const Text(
-                  'Igor Welcomes You',
+                  'Your credentials, Master... or whatever.',
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: 24.0,
@@ -77,7 +77,7 @@ class _LoginViewState extends State<LoginView> {
                   ),
                 ),
                 Text(
-                  'ever at your service, ready for the next task',
+                  'Oh, the thrill... Your login awaits, Master.',
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: 16.0,

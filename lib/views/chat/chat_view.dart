@@ -109,7 +109,7 @@ class ChatViewState extends State<ChatView>
           home: Scaffold(
             appBar: AppBar(
               title: const Text(
-                'It is your Igor, master!',
+                'Igor, do this. Igor, do that...',
                 style: TextStyle(color: Colors.black),
               ),
               backgroundColor: const Color.fromARGB(255, 254, 238, 59),
@@ -185,7 +185,7 @@ class ChatViewState extends State<ChatView>
                                   color: Color.fromARGB(255, 254, 238, 59),
                                   width: 2.0),
                             ),
-                            hintText: 'Enter your wishes here master',
+                            hintText: 'One more task for poor Igor...',
                           ),
                         ),
                       ),

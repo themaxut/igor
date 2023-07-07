@@ -89,7 +89,7 @@ class _RegistrationViewState extends State<RegistrationView> {
                     ),
                     const SizedBox(height: 30.0),
                     const Text(
-                      'Aqcuire an Igor',
+                      'Oh great, another Master to serve...',
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         fontSize: 24.0,
@@ -97,7 +97,7 @@ class _RegistrationViewState extends State<RegistrationView> {
                       ),
                     ),
                     Text(
-                      'to whom does Igor answer?',
+                      'Never a dull day for Igor...',
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         fontSize: 16.0,

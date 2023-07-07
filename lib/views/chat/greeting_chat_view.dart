@@ -21,7 +21,7 @@ class GreetingChatView extends StatelessWidget {
                 vertical: 10,
               ),
               child: Text(
-                'Greetings Master!',
+                'Oh, the Igor life!',
                 style: TextStyle(
                   fontSize: 24,
                   fontWeight: FontWeight.bold,
@@ -31,7 +31,7 @@ class GreetingChatView extends StatelessWidget {
             const Padding(
               padding: EdgeInsets.symmetric(horizontal: 50),
               child: Text(
-                'Igor this, Igor that, I bet even the bats have started to echo it!',
+                'Here goes Igor, yet again...',
                 style: TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.w300,
