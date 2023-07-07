@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:igor/services/auth/auth_exceptions.dart';
 
 import '../../services/auth/bloc/auth_bloc.dart';
+import '../../services/auth/bloc/auth_event.dart';
 import '../../services/auth/bloc/auth_state.dart';
 
 class LoginView extends StatefulWidget {
@@ -166,7 +166,9 @@ class _LoginViewState extends State<LoginView> {
                   children: [
                     TextButton(
                       onPressed: () {
-                        // TODO: navigate to forgot password screen
+                        context.read<AuthBloc>().add(
+                              const AuthEventForgotPassword(),
+                            );
                       },
                       child: const Text(
                         'Forgot your password?',
@@ -177,9 +179,17 @@ class _LoginViewState extends State<LoginView> {
                     ),
                     const Spacer(),
                     ElevatedButton(
-                      onPressed: () {
-                        // TODO: implement login auth
+                      onPressed: () async {
                         _formKey.currentState!.validate();
+
+                        final email = _emailController.text;
+                        final password = _passwordController.text;
+                        context.read<AuthBloc>().add(
+                              AuthEventLogin(
+                                email,
+                                password,
+                              ),
+                            );
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor:
@@ -212,7 +222,9 @@ class _LoginViewState extends State<LoginView> {
                     ),
                     TextButton(
                       onPressed: () {
-                        // TODO: navigate to registration screen
+                        context.read<AuthBloc>().add(
+                              const AuthEventShouldRegister(),
+                            );
                       },
                       child: const Text(
                         'Acquire an Igor',

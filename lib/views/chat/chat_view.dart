@@ -6,6 +6,8 @@ import 'package:igor/views/chat/greeting_chat_view.dart';
 import '../../components/typing_indicator.dart';
 import '../../models/chat_message.dart';
 
+import '../../services/auth/bloc/auth_bloc.dart';
+import '../../services/auth/bloc/auth_event.dart';
 import '../../services/chat/bloc/chat_bloc.dart';
 import '../../services/chat/bloc/chat_state.dart';
 
@@ -94,8 +96,18 @@ class ChatViewState extends State<ChatView>
                 'It is your Igor, master!',
                 style: TextStyle(color: Colors.black),
               ),
-              backgroundColor: Color.fromARGB(255, 254, 238, 59),
-              //TODO: add Logout button
+              backgroundColor: const Color.fromARGB(255, 254, 238, 59),
+              actions: <Widget>[
+                IconButton(
+                  icon: const Icon(Icons.logout, color: Colors.black),
+                  onPressed: () {
+                    //TODO: replace with confirmation dialog
+                    context.read<AuthBloc>().add(
+                          const AuthEventLogout(),
+                        );
+                  },
+                ),
+              ],
             ),
             body: Column(
               children: <Widget>[
@@ -148,7 +160,7 @@ class ChatViewState extends State<ChatView>
                           _handleSubmit(_textController.text);
                         },
                         icon: const Icon(Icons.send),
-                        color: Color.fromARGB(255, 254, 238, 59),
+                        color: const Color.fromARGB(255, 254, 238, 59),
                       ),
                     ],
                   ),
