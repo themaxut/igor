@@ -1,5 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
+import 'package:igor/services/auth/bloc/auth_bloc.dart';
+import 'package:igor/services/auth/firebase_auth_provider.dart';
 import 'package:igor/services/chat/bloc/chat_bloc.dart';
 import 'package:igor/services/chat/openai_service.dart';
 import 'package:igor/views/auth/login_view.dart';
@@ -23,12 +25,16 @@ class IgorApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Igor',
-      theme: ThemeData.dark(),
-      home: BlocProvider<ChatBloc>(
-          create: (context) => ChatBloc(apiService: OpenAIService()),
-          child: VerifyEmailView() //const ChatView(),
-          ),
-    );
+        title: 'Igor',
+        theme: ThemeData.dark(),
+        home: BlocProvider<AuthBloc>(
+          create: (context) => AuthBloc(FirebaseAuthProvider()),
+          child: const LoginView(),
+        )
+        // home: BlocProvider<ChatBloc>(
+        //     create: (context) => ChatBloc(apiService: OpenAIService()),
+        //     child: const ChatView(),
+        //     ),
+        );
   }
 }
