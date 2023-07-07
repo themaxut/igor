@@ -113,9 +113,10 @@ class ChatViewState extends State<ChatView>
                     color: Colors.black,
                   ),
                   onPressed: () async {
-                    // TODO: fix this - messages are not deleted
                     final shouldClearHistory =
                         await showClearHistoryDialog(context);
+                    print(
+                        'Clear history dialog result: $shouldClearHistory'); // Debug print
                     if (shouldClearHistory) {
                       _messages.clear();
                       context.read<ChatBloc>().add(

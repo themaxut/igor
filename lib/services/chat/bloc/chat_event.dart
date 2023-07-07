@@ -15,3 +15,5 @@ class SendMessageEvent extends ChatEvent {
 }
 
 class LoadChatHistoryEvent extends ChatEvent {}
+
+class ClearChatHistoryEvent extends ChatEvent {}

@@ -41,16 +41,15 @@ class FirestoreService {
 
   Future<void> clearChatHistory(String userId) async {
     try {
-      await _firestore
+      QuerySnapshot querySnapshot = await _firestore
           .collection(FirestoreConstants.usersCollection)
           .doc(userId)
           .collection(FirestoreConstants.chatHistoryCollection)
-          .get()
-          .then((querySnapshot) {
-        for (var doc in querySnapshot.docs) {
-          doc.reference.delete();
-        }
-      });
+          .get();
+
+      for (var doc in querySnapshot.docs) {
+        await doc.reference.delete();
+      }
     } catch (e) {
       throw FirestoreWriteException(e.toString());
     }

@@ -75,7 +75,9 @@ class ChatBloc extends Bloc<ChatEvent, ChatState> {
   Future<void> _onClearChatHistoryEvent(
       ClearChatHistoryEvent event, Emitter<ChatState> emit) async {
     try {
+      print('Attempting to clear chat history...'); // Debug print
       await firestoreService.clearChatHistory(userId);
+      print('Chat history cleared, reloading...'); // Debug print
 
       final chatHistory = await firestoreService.getChatHistory(userId).first;
       emit(ChatHistoryLoaded(chatHistory: chatHistory));
