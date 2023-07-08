@@ -7,7 +7,7 @@ Future<bool> showClearHistoryDialog(
 ) {
   return showGenericDialog<bool>(
     context: context,
-    title: 'Logout',
+    title: 'Clear Chat History',
     content: 'Are you sure you want to clear your chat history?',
     optionsBuilder: () => {
       'Cancel': false,

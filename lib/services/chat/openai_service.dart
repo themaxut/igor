@@ -9,7 +9,7 @@ class OpenAIService {
             await OpenAI.instance.chat.create(
           model: "gpt-3.5-turbo",
           maxTokens:
-              5, //TOOD: remove after dev/testing. Currently here to minimize usage charges.
+              1000, //TOOD: remove after dev/testing. Currently here to minimize usage charges.
           messages: [
             OpenAIChatCompletionChoiceMessageModel(
               content: message.text,
