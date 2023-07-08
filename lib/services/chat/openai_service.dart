@@ -18,10 +18,6 @@ class OpenAIService {
           ],
         );
 
-        // TODO: remove this after
-        // print(chatCompletion.id);
-        // print(chatCompletion.choices.first.message);
-
         if (chatCompletion.choices.isNotEmpty) {
           ChatMessage response = ChatMessage(
             text: chatCompletion.choices.first.message.content.toString(),
