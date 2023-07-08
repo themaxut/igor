@@ -1,6 +1,7 @@
 # Igor - A personal assistant to answer any questions you have
-## Video Demo:  <URL HERE>
-## Description:
+#### Video Demo:  <URL HERE>
+## Description
+### Summary
 Igor is a Flutter-based mobile application that facilitates user interaction with an AI - in this case Open AI GPT 3.5turbo - in chat format.
 
 For the backend, I used:
