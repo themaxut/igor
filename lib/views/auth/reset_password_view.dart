@@ -54,7 +54,7 @@ class _ResetPasswordViewState extends State<ResetPasswordView> {
               context,
               'Please make sure you are a registered user',
             );
-          } else {
+          } else if (state.exception is GenericAuthException) {
             await showErrorDialog(
               context,
               'We could not process your request. Please make sure that you are a registered user, or if not, register a user now by going back one step.',
